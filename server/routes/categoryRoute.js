@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const { categoryGet, categoryPost, categoryPut, categoryDelete } = require('../controllers/categoryController');
+const { categoryGet, categoryGetOne, categoryPost, categoryPut, categoryDelete } = require('../controllers/categoryController');
 
 const router = Router();
 
-router.get('/category/', categoryGet);
+router.get('/categories/', categoryGet);
+router.get('/category/:id', categoryGetOne);
 router.post('/category/', categoryPost);
 router.put('/category/:id', categoryPut);
 router.delete('/category/:id', categoryDelete);

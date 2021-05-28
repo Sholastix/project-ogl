@@ -2,7 +2,19 @@ const { Category } = require('../models/Category');
 
 const categoryGet = async (req, res) => {
     try {
-        const category = await Category.findAll();
+        const categories = await Category.findAll();
+        console.log(categories);
+        res.json(categories);
+    } catch (err) {
+        console.error(err);
+        res.json({ message: err.message });
+    };
+};
+
+const categoryGetOne = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const category = await Category.findOne({ where: { id } });
         console.log(category);
         res.json(category);
     } catch (err) {
@@ -54,6 +66,7 @@ const categoryDelete = async (req, res) => {
 
 module.exports = {
     categoryGet,
+    categoryGetOne,
     categoryPost,
     categoryPut,
     categoryDelete,

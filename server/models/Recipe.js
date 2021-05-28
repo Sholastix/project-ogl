@@ -2,8 +2,8 @@ const Sequelize = require('sequelize');
 
 const database = require('../config/initializeDatabase');
 
-// Create model "Category".
-const Category = database.define('category', {
+// Create model "Recipe".
+const Recipe = database.define('recipe', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -12,6 +12,14 @@ const Category = database.define('category', {
     },
 
     name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
+    },
+
+    content: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
@@ -28,9 +36,9 @@ const Category = database.define('category', {
 );
 
 // Adding sequelize hook to transform (trim in our case) incoming userdata.
-Category.beforeCreate(async (category, options) => {
-    const transformedName = await category.name.trim();
-    category.name = transformedName;
+Recipe.beforeCreate(async (recipe, options) => {
+    const transformedName = await recipe.name.trim();
+    recipe.name = transformedName;
 });
 
-module.exports = { Category };
+module.exports = { Recipe };

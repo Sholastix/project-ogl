@@ -7,6 +7,7 @@ const createDatabase = require('./config/createDatabase');
 const database = require('./config/initializeDatabase');
 
 const categoryRoute = require('./routes/categoryRoute');
+const recipeRoute = require('./routes/recipeRoute');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 // // Сross-origin resource sharing permission.
 // app.use(cors());
 
-app.use('/api', categoryRoute);
+app.use('/api', categoryRoute, recipeRoute);
 
 // Synchronization with DB, if success -> server starts.
 (async () => {
