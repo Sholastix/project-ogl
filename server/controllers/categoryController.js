@@ -32,7 +32,7 @@ const categoryPut = async (req, res) => {
         // This code only for displaying already updated category instead of simple [0] or [1].
         const updatedCategory = await Category.findOne({ where: { id } });
         //
-        
+
         console.log(updatedCategory);
         res.json(updatedCategory);
     } catch (err) {
